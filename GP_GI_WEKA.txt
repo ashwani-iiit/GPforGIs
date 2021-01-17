@@ -1,0 +1,48 @@
+# WEKA functions and parameters used to generate GP model
+
+## please note that below codes are run on WEKA CLI
+## these set of parameters can also be used through WEKA GUI
+## other parameters can also be used for better tuning
+## WEKA input files are in .arff format 
+## it is not a python script
+
+(/WEKA, CLI, Script, starts)
+
+java weka.classifiers.functions.GaussianProcesses -t "/path/to/training.arff" -T "/path/to/test.arff" -L 1.0 -N 0 -x 5-K "weka.classifiers.functions.supportVector.RBFKernel -C 250007 -G 1.0" -S 1
+
+(/WEKA, CLI, Script, ends)
+
+Valid options are:
+
+ -t <name of training file>
+        Sets training file.
+ -T <name of test file>
+        Sets test file. If missing, a cross-validation will be performed on the 
+        training data.
+ -c <class index>
+        Sets index of class attribute (default: last).
+ -x <number of folds>
+        Sets number of folds for cross-validation (default: 10).
+
+ -L <double>
+  Level of Gaussian Noise.
+  (default: 1.0)
+ -N
+  Whether to 0=normalize/1=standardize/2=neither.
+  (default: 0=normalize)
+ -K <classname and parameters>
+  The Kernel to use.
+  (default: weka.classifiers.functions.supportVector.PolyKernel)
+ 
+ Options specific to kernel weka.classifiers.functions.supportVector.RBFKernel:
+
+ -C <num>
+  The size of the cache (a prime number), 0 for full cache and 
+  -1 to turn it off.
+  (default: 250007)
+ -G <num>
+  The Gamma parameter.
+  (default: 0.01)
+ -S <num>
+  Random number seed.
+  (default 1)
